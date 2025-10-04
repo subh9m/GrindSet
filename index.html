@@ -1,0 +1,967 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Algorithm Mastery Guide</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: 'Inter', -apple-system, sans-serif;
+      background-color: #000000;
+      color: #ffffff;
+      line-height: 1.8;
+      overflow-x: hidden;
+    }
+
+    /* Header */
+    header {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      background-color: #000000;
+      border-bottom: 1px solid #ffffff;
+      z-index: 1000;
+    }
+
+    nav {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 20px 40px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo {
+      font-size: 18px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      color: #ffffff;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 40px;
+      list-style: none;
+    }
+
+    .nav-links a {
+      color: #ffffff;
+      text-decoration: none;
+      font-size: 14px;
+      font-weight: 400;
+      letter-spacing: 1px;
+      transition: color 0.3s ease;
+    }
+
+    .nav-links a:hover { color: #ff0000; }
+
+    /* Hero Section */
+    .hero {
+      margin-top: 80px;
+      padding: 120px 40px;
+      text-align: center;
+      border-bottom: 1px solid #ffffff;
+    }
+
+    .hero h1 {
+      font-size: 72px;
+      font-weight: 700;
+      letter-spacing: -2px;
+      margin-bottom: 30px;
+      line-height: 1.1;
+    }
+
+    .hero p {
+      font-size: 20px;
+      font-weight: 300;
+      letter-spacing: 1px;
+      max-width: 700px;
+      margin: 0 auto 50px;
+      opacity: 0.8;
+    }
+
+    .cta-button {
+      display: inline-block;
+      padding: 18px 50px;
+      background-color: #000000;
+      color: #ff0000;
+      border: 2px solid #ff0000;
+      text-decoration: none;
+      font-size: 14px;
+      font-weight: 600;
+      letter-spacing: 2px;
+      transition: all 0.3s ease;
+    }
+
+    .cta-button:hover {
+      background-color: #ff0000;
+      color: #000000;
+    }
+
+    /* Container */
+    .container {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 80px 40px;
+    }
+
+    /* Section Title */
+    .section-title {
+      font-size: 48px;
+      font-weight: 700;
+      letter-spacing: -1px;
+      margin-bottom: 20px;
+      text-align: center;
+    }
+
+    .section-subtitle {
+      font-size: 16px;
+      font-weight: 300;
+      letter-spacing: 1px;
+      text-align: center;
+      margin-bottom: 80px;
+      opacity: 0.7;
+    }
+
+    /* Approach Section */
+    .approach-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 30px;
+      margin-bottom: 80px;
+    }
+
+    .step-card {
+      border: 1px solid #ffffff;
+      padding: 40px;
+      transition: all 0.3s ease;
+    }
+
+    .step-card:hover {
+      border-color: #ff0000;
+      transform: translateY(-5px);
+    }
+
+    .step-number {
+      font-size: 60px;
+      font-weight: 700;
+      color: #ff0000;
+      line-height: 1;
+      margin-bottom: 20px;
+    }
+
+    .step-card h3 {
+      font-size: 24px;
+      font-weight: 600;
+      letter-spacing: 1px;
+      margin-bottom: 15px;
+    }
+
+    .step-card p {
+      font-size: 14px;
+      font-weight: 300;
+      line-height: 1.6;
+      opacity: 0.8;
+    }
+
+    /* Constraint Table */
+    .table-wrapper {
+      border: 1px solid #ffffff;
+      margin: 60px 0;
+      overflow-x: auto;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+
+    th {
+      background-color: #000000;
+      color: #ff0000;
+      padding: 20px;
+      text-align: left;
+      font-size: 14px;
+      font-weight: 600;
+      letter-spacing: 1px;
+      border-bottom: 1px solid #ffffff;
+    }
+
+    td {
+      padding: 20px;
+      font-size: 14px;
+      font-weight: 300;
+      border-bottom: 1px solid #333333;
+    }
+
+    tr:last-child td { border-bottom: none; }
+    tr:hover { background-color: #0a0a0a; }
+
+    /* Algorithm Cards */
+    .algo-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+      gap: 30px;
+      margin-top: 60px;
+    }
+
+    .algo-card {
+      border: 1px solid #ffffff;
+      padding: 40px;
+      transition: all 0.3s ease;
+    }
+
+    .algo-card:hover { border-color: #ff0000; }
+
+    .algo-card h3 {
+      font-size: 28px;
+      font-weight: 600;
+      margin-bottom: 20px;
+      letter-spacing: 1px;
+    }
+
+    .algo-label {
+      font-size: 12px;
+      font-weight: 600;
+      color: #ff0000;
+      letter-spacing: 2px;
+      margin-top: 25px;
+      margin-bottom: 10px;
+      display: block;
+    }
+
+    .algo-text {
+      font-size: 14px;
+      font-weight: 300;
+      line-height: 1.6;
+      opacity: 0.8;
+    }
+
+    .algo-examples {
+      margin-top: 20px;
+      padding-top: 20px;
+      border-top: 1px solid #333333;
+      font-size: 13px;
+      opacity: 0.7;
+    }
+
+    /* Info Box */
+    .info-box {
+      border: 1px solid #ffffff;
+      padding: 40px;
+      margin: 60px 0;
+      background-color: #000000;
+    }
+
+    .info-box h4 {
+      font-size: 18px;
+      font-weight: 600;
+      letter-spacing: 1px;
+      margin-bottom: 20px;
+      color: #ff0000;
+    }
+
+    .info-box ul { list-style: none; padding-left: 0; }
+    .info-box li {
+      font-size: 14px; font-weight: 300; padding: 10px 0;
+      border-bottom: 1px solid #1a1a1a; transition: all 0.3s ease;
+    }
+
+    .info-box li:last-child { border-bottom: none; }
+    .info-box li:hover { padding-left: 15px; color: #ff0000; }
+    .info-box li strong { font-weight: 600; color: #ffffff; }
+
+    /* Quote Section - original fallback (hidden because we use rotator) */
+    .quote-section { text-align: center; padding: 80px 40px; border-top: 1px solid #ffffff; border-bottom: 1px solid #ffffff; margin: 80px 0; }
+
+    .quote-text { font-size: 32px; font-weight: 300; line-height: 1.4; letter-spacing: 0px; max-width: 900px; margin: 0 auto; }
+    .quote-author { font-size: 14px; font-weight: 600; letter-spacing: 2px; margin-top: 30px; color: #ff0000; }
+
+    /* Advanced Section */
+    .advanced-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(400px, 1fr)); gap: 30px; margin-top: 60px; }
+
+    /* Action Plan */
+    .timeline { margin-top: 60px; }
+
+    .timeline-item {
+      border-left: 2px solid #ffffff;
+      padding-left: 40px;
+      padding-bottom: 60px;
+      position: relative;
+      transition: border-color 0.3s ease;
+    }
+
+    .timeline-item:hover { border-color: #ff0000; }
+
+    .timeline-item::before {
+      content: '';
+      position: absolute;
+      left: -6px;
+      top: 0;
+      width: 10px;
+      height: 10px;
+      background-color: #ff0000;
+      border-radius: 50%;
+    }
+
+    .timeline-week {
+      font-size: 14px;
+      font-weight: 600;
+      letter-spacing: 2px;
+      color: #ff0000;
+      margin-bottom: 10px;
+    }
+
+    .timeline-title { font-size: 24px; font-weight: 600; margin-bottom: 15px; }
+    .timeline-desc { font-size: 14px; font-weight: 300; opacity: 0.8; line-height: 1.6; }
+
+    /* Footer */
+    footer { border-top: 1px solid #ffffff; padding: 60px 40px; text-align: center; }
+    .footer-content { max-width: 1400px; margin: 0 auto; }
+    .footer-links { display: flex; justify-content: center; gap: 40px; list-style: none; margin-bottom: 30px; }
+    .footer-links a { color: #ffffff; text-decoration: none; font-size: 14px; letter-spacing: 1px; transition: color 0.3s ease; }
+    .footer-links a:hover { color: #ff0000; }
+    .copyright { font-size: 12px; font-weight: 300; opacity: 0.5; letter-spacing: 1px; }
+
+    /* Divider */
+    .divider { height: 1px; background-color: #ffffff; margin: 80px 0; }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .hero h1 { font-size: 48px; }
+      .hero p { font-size: 16px; }
+      .section-title { font-size: 36px; }
+      .approach-grid, .algo-grid, .advanced-grid { grid-template-columns: 1fr; }
+      nav { flex-direction: column; gap: 20px; }
+      .nav-links { gap: 20px; }
+      .quote-text { font-size: 24px; }
+    }
+
+    /* Smooth Scroll */
+    html { scroll-behavior: smooth; }
+
+    /* ---------------------------
+       Quote rotator styles (append)
+       --------------------------- */
+    .quote-rotator {
+      text-align: center;
+      padding: 60px 40px;
+      border-top: 1px solid #ffffff;
+      border-bottom: 1px solid #ffffff;
+      margin: 80px 0;
+      position: relative;
+      background: #000000;
+    }
+
+    .quote-rotator .quote-inner {
+      max-width: 900px;
+      margin: 0 auto 24px;
+      transition: opacity 400ms ease, transform 400ms ease;
+    }
+
+    .quote-rotator .quote-text {
+      font-size: 28px;
+      font-weight: 300;
+      line-height: 1.4;
+      margin-bottom: 18px;
+      color: #ffffff;
+      opacity: 1;
+    }
+
+    .quote-rotator .quote-author {
+      font-size: 14px;
+      font-weight: 600;
+      letter-spacing: 2px;
+      color: #ff0000;
+    }
+
+    .quote-controls {
+      max-width: 720px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      gap: 18px;
+      flex-direction: column;
+    }
+
+    .progress-wrap {
+      width: 100%;
+      height: 8px;
+      background: rgba(255,255,255,0.06);
+      border-radius: 999px;
+      overflow: hidden;
+      box-shadow: inset 0 0 0 1px rgba(255,0,0,0.05);
+    }
+
+    .progress-bar {
+      height: 100%;
+      width: 0%;
+      background: linear-gradient(90deg, #ff0000, #ff4d4d);
+      transition: width 120ms linear;
+    }
+
+    .progress-slider {
+      -webkit-appearance: none;
+      appearance: none;
+      width: 100%;
+      height: 6px;
+      background: transparent;
+      outline: none;
+      cursor: pointer;
+      margin-top: 6px;
+    }
+
+    .progress-slider::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      appearance: none;
+      width: 18px;
+      height: 18px;
+      border-radius: 999px;
+      background: #ff0000;
+      box-shadow: 0 0 0 4px rgba(255,0,0,0.12);
+      border: 2px solid #000;
+    }
+
+    .progress-slider::-moz-range-thumb {
+      width: 18px;
+      height: 18px;
+      border-radius: 999px;
+      background: #ff0000;
+      border: none;
+      box-shadow: 0 0 0 4px rgba(255,0,0,0.12);
+    }
+
+    .progress-slider:focus { outline: none; }
+
+    .quote-fade-out { opacity: 0; transform: translateY(8px); }
+    .quote-fade-in { opacity: 1; transform: translateY(0); }
+  </style>
+</head>
+<body>
+  <header>
+    <nav>
+      <div class="logo">ALGORITHM MASTERY</div>
+      <ul class="nav-links">
+        <li><a href="#home">HOME</a></li>
+        <li><a href="#approach">APPROACH</a></li>
+        <li><a href="#algorithms">ALGORITHMS</a></li>
+        <li><a href="#plan">ACTION PLAN</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- HERO -->
+  <section class="hero" id="home">
+    <h1>MASTER ALGORITHMS.<br>CRACK INTERVIEWS.</h1>
+    <p>Transform from struggling coder to confident problem solver. Battle-tested strategies from FAANG interviews.</p>
+    <a href="#approach" class="cta-button">START LEARNING</a>
+  </section>
+
+  <!-- QUOTE ROTATOR (replaces first quote) -->
+  <section class="quote-section">
+    <div
+      class="quote-rotator"
+      data-duration="8000"
+      data-quotes='[
+        {"text":"Whatever your current ability, effort is what ignites that ability and turns it into accomplishment.","author":"— CAROL DWECK"},
+        {"text":"Discipline is the bridge between goals and accomplishment.","author":"— JIM ROHN"},
+        {"text":"Dream big. Work hard. Stay humble.","author":"— UNKNOWN"}
+      ]'>
+      <div class="quote-inner">
+        <blockquote class="quote-text" aria-live="polite">"Whatever your current ability, effort is what ignites that ability and turns it into accomplishment."</blockquote>
+        <div class="quote-author">— CAROL DWECK</div>
+      </div>
+
+      <div class="quote-controls">
+        <div class="progress-wrap" aria-hidden="true">
+          <div class="progress-bar"></div>
+        </div>
+        <input class="progress-slider" type="range" min="0" max="100" value="0" aria-label="Quote progress slider" />
+      </div>
+    </div>
+  </section>
+
+  <!-- APPROACH -->
+  <div class="container" id="approach">
+    <h2 class="section-title">THE 5-STEP APPROACH</h2>
+    <p class="section-subtitle">A systematic method to solve any coding interview problem</p>
+
+    <div class="approach-grid">
+      <div class="step-card">
+        <div class="step-number">01</div>
+        <h3>UNDERSTAND &amp; CLARIFY</h3>
+        <p>Ask targeted questions about input sizes, edge cases, constraints, and expected output format before writing code.</p>
+      </div>
+
+      <div class="step-card">
+        <div class="step-number">02</div>
+        <h3>BRUTE-FORCE FIRST</h3>
+        <p>Start with the simplest solution. Demonstrate understanding and create a baseline to optimize from.</p>
+      </div>
+
+      <div class="step-card">
+        <div class="step-number">03</div>
+        <h3>ANALYZE CONSTRAINTS</h3>
+        <p>Input size reveals required time complexity. Use this as your biggest hint for algorithm selection.</p>
+      </div>
+
+      <div class="step-card">
+        <div class="step-number">04</div>
+        <h3>OPTIMIZE &amp; SELECT</h3>
+        <p>Look for memoization opportunities, hash map optimizations, two pointers, binary search, or greedy approaches.</p>
+      </div>
+
+      <div class="step-card">
+        <div class="step-number">05</div>
+        <h3>CODE &amp; TEST</h3>
+        <p>Write clean code with meaningful names. Test normal cases, edge cases, and boundary conditions.</p>
+      </div>
+    </div>
+
+    <div class="info-box">
+      <h4>RED FLAGS TO WATCH FOR</h4>
+      <ul>
+        <li><strong>"Optimize for time"</strong> — Usually means sacrifice space complexity</li>
+        <li><strong>"In-place"</strong> — Means O(1) extra space only, no additional arrays</li>
+        <li><strong>"Online algorithm"</strong> — Process data as it streams in, can't store all</li>
+        <li><strong>"Real-time"</strong> — Suggests need for very efficient solution</li>
+        <li><strong>"Multiple test cases"</strong> — Your solution will run many times, optimize!</li>
+      </ul>
+    </div>
+
+    <div class="table-wrapper">
+      <table>
+        <thead>
+          <tr>
+            <th>INPUT SIZE</th>
+            <th>TIME COMPLEXITY</th>
+            <th>LIKELY ALGORITHMS</th>
+            <th>EXAMPLES</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>≤ 10-15</td>
+            <td>O(n!), O(2ⁿ)</td>
+            <td>Backtracking, Permutations</td>
+            <td>N-Queens, Sudoku Solver</td>
+          </tr>
+          <tr>
+            <td>≤ 20-25</td>
+            <td>O(2ⁿ)</td>
+            <td>DFS with pruning, Bitmask DP</td>
+            <td>Subset Sum, Combination Sum</td>
+          </tr>
+          <tr>
+            <td>≤ 100-500</td>
+            <td>O(n³)</td>
+            <td>Triple nested loops</td>
+            <td>All triplets, Floyd-Warshall</td>
+          </tr>
+          <tr>
+            <td>≤ 1,000-5,000</td>
+            <td>O(n²)</td>
+            <td>DP, Nested loops, BFS/DFS</td>
+            <td>LCS, Edit Distance</td>
+          </tr>
+          <tr>
+            <td>≤ 10⁴-10⁵</td>
+            <td>O(n log n)</td>
+            <td>Sorting, Heaps, Divide &amp; Conquer</td>
+            <td>Merge Intervals, Top K</td>
+          </tr>
+          <tr>
+            <td>≤ 10⁵-10⁶</td>
+            <td>O(n)</td>
+            <td>Hash maps, Two pointers, Sliding window</td>
+            <td>Two Sum, Max Subarray</td>
+          </tr>
+          <tr>
+            <td>> 10⁶</td>
+            <td>O(log n), O(1)</td>
+            <td>Math formulas, Binary search</td>
+            <td>Find peak, Square root</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="quote-section">
+    <p class="quote-text">"Success is not final, failure is not fatal: it is the courage to continue that counts."</p>
+    <p class="quote-author">— WINSTON CHURCHILL</p>
+  </div>
+
+  <!-- ALGORITHMS -->
+  <div class="container" id="algorithms">
+    <h2 class="section-title">FOUNDATIONAL ALGORITHMS</h2>
+    <p class="section-subtitle">Master these patterns to solve 90% of interview problems</p>
+
+    <div class="algo-grid">
+      <div class="algo-card">
+        <h3>HASH MAP</h3>
+        <span class="algo-label">WHEN TO USE</span>
+        <p class="algo-text">Need O(1) lookups, counting frequencies, or checking if elements exist. Perfect for problems requiring fast access to previously seen data.</p>
+        <span class="algo-label">KEYWORDS</span>
+        <p class="algo-text">count, frequency, unique, duplicate, seen before, complement, pair sum, anagram, group by</p>
+        <div class="algo-examples">EXAMPLES: Two Sum, Group Anagrams, Subarray Sum Equals K</div>
+      </div>
+
+      <div class="algo-card">
+        <h3>BINARY SEARCH</h3>
+        <span class="algo-label">WHEN TO USE</span>
+        <p class="algo-text">Searching in sorted arrays or when finding specific value in sorted space. Also powerful for "search for the answer" problems with monotonic property.</p>
+        <span class="algo-label">KEYWORDS</span>
+        <p class="algo-text">sorted array, find target, logarithmic time, first/last occurrence, peak, minimum/maximum in range, rotated</p>
+        <div class="algo-examples">EXAMPLES: Search in Rotated Array, Find Peak Element, Sqrt(x)</div>
+      </div>
+
+      <div class="algo-card">
+        <h3>SLIDING WINDOW</h3>
+        <span class="algo-label">WHEN TO USE</span>
+        <p class="algo-text">Problems involving contiguous subarrays/substrings with specific properties. Especially when you need min/max/optimal subarray.</p>
+        <span class="algo-label">KEYWORDS</span>
+        <p class="algo-text">subarray, substring, contiguous, window, maximum/minimum length, sum equals k, at most k, consecutive</p>
+        <div class="algo-examples">EXAMPLES: Longest Substring Without Repeating, Minimum Window Substring</div>
+      </div>
+
+      <div class="algo-card">
+        <h3>TWO POINTERS</h3>
+        <span class="algo-label">WHEN TO USE</span>
+        <p class="algo-text">Problems on sorted arrays, finding pairs, or processing elements from both ends. Great for reducing O(n²) to O(n).</p>
+        <span class="algo-label">KEYWORDS</span>
+        <p class="algo-text">sorted array, pair, triplet, palindrome, opposite ends, meeting in middle, remove duplicates, in-place</p>
+        <div class="algo-examples">EXAMPLES: 3Sum, Container With Most Water, Valid Palindrome</div>
+      </div>
+
+      <div class="algo-card">
+        <h3>BFS / DFS</h3>
+        <span class="algo-label">WHEN TO USE</span>
+        <p class="algo-text">BFS for shortest paths in unweighted graphs and level-order traversal. DFS for exploring all paths and tree traversals.</p>
+        <span class="algo-label">KEYWORDS</span>
+        <p class="algo-text">shortest path, level-order, traverse, connected components, cycle detection, all paths, maximum depth</p>
+        <div class="algo-examples">EXAMPLES: Number of Islands, Level Order Traversal, Course Schedule</div>
+      </div>
+
+      <div class="algo-card">
+        <h3>BACKTRACKING</h3>
+        <span class="algo-label">WHEN TO USE</span>
+        <p class="algo-text">Finding all possible solutions, combinations, permutations. Make choices, recurse, then undo choices.</p>
+        <span class="algo-label">KEYWORDS</span>
+        <p class="algo-text">all combinations, all permutations, generate all, place queens, solve puzzle, word search, partition</p>
+        <div class="algo-examples">EXAMPLES: N-Queens, Generate Parentheses, Combination Sum</div>
+      </div>
+
+      <div class="algo-card">
+        <h3>DYNAMIC PROGRAMMING</h3>
+        <span class="algo-label">WHEN TO USE</span>
+        <p class="algo-text">Optimization problems with overlapping subproblems and optimal substructure. When brute force repeats calculations.</p>
+        <span class="algo-label">KEYWORDS</span>
+        <p class="algo-text">maximum/minimum, count ways, optimal, best, overlapping subproblems, subsequence, ways to, longest</p>
+        <div class="algo-examples">EXAMPLES: Coin Change, LCS, Edit Distance, House Robber</div>
+      </div>
+
+      <div class="algo-card">
+        <h3>HEAP / PRIORITY QUEUE</h3>
+        <span class="algo-label">WHEN TO USE</span>
+        <p class="algo-text">Need min/max element repeatedly or maintain sorted order while inserting/removing. Perfect for "top k" problems.</p>
+        <span class="algo-label">KEYWORDS</span>
+        <p class="algo-text">kth largest/smallest, top k, median, priority, merge sorted, closest, running median, k most frequent</p>
+        <div class="algo-examples">EXAMPLES: Kth Largest Element, Merge K Sorted Lists, Find Median</div>
+      </div>
+
+      <div class="algo-card">
+        <h3>MONOTONIC STACK/QUEUE</h3>
+        <span class="algo-label">WHEN TO USE</span>
+        <p class="algo-text">Finding next greater/smaller element or maintaining elements in increasing/decreasing order efficiently.</p>
+        <span class="algo-label">KEYWORDS</span>
+        <p class="algo-text">next greater, next smaller, previous greater, largest rectangle, trapping water, stock span</p>
+        <div class="algo-examples">EXAMPLES: Next Greater Element, Largest Rectangle in Histogram</div>
+      </div>
+
+      <div class="algo-card">
+        <h3>PREFIX SUM</h3>
+        <span class="algo-label">WHEN TO USE</span>
+        <p class="algo-text">Calculate range sums quickly or when subarray sums appear frequently. Preprocessing for O(1) queries.</p>
+        <span class="algo-label">KEYWORDS</span>
+        <p class="algo-text">range sum, subarray sum, sum between indices, continuous subarray, multiple queries</p>
+        <div class="algo-examples">EXAMPLES: Range Sum Query, Subarray Sum Equals K</div>
+      </div>
+    </div>
+
+    <div class="divider"></div>
+
+    <h2 class="section-title">ADVANCED ALGORITHMS</h2>
+    <p class="section-subtitle">Level up with these sophisticated techniques</p>
+
+    <div class="advanced-grid">
+      <div class="algo-card">
+        <h3>TRIE (PREFIX TREE)</h3>
+        <span class="algo-label">WHEN TO USE</span>
+        <p class="algo-text">String prefix matching, autocomplete systems, or efficient storage of strings with common prefixes.</p>
+        <span class="algo-label">KEYWORDS</span>
+        <p class="algo-text">prefix, autocomplete, word search, dictionary, common prefix, word break</p>
+        <div class="algo-examples">EXAMPLES: Implement Trie, Word Search II, Longest Word</div>
+      </div>
+
+      <div class="algo-card">
+        <h3>UNION-FIND (DSU)</h3>
+        <span class="algo-label">WHEN TO USE</span>
+        <p class="algo-text">Dynamic connectivity problems, detecting cycles in undirected graphs, grouping elements into connected components.</p>
+        <span class="algo-label">KEYWORDS</span>
+        <p class="algo-text">connected components, union, find, cycle detection, dynamic connectivity, friends, groups</p>
+        <div class="algo-examples">EXAMPLES: Number of Connected Components, Redundant Connection</div>
+      </div>
+
+      <div class="algo-card">
+        <h3>SEGMENT TREE</h3>
+        <span class="algo-label">WHEN TO USE</span>
+        <p class="algo-text">Range queries with updates on arrays. When both query and update operations need to be efficient.</p>
+        <span class="algo-label">KEYWORDS</span>
+        <p class="algo-text">range sum, range minimum/maximum, update range, interval queries, lazy propagation</p>
+        <div class="algo-examples">EXAMPLES: Range Sum Query - Mutable, Count of Smaller Numbers</div>
+      </div>
+
+      <div class="algo-card">
+        <h3>TOPOLOGICAL SORT</h3>
+        <span class="algo-label">WHEN TO USE</span>
+        <p class="algo-text">Ordering tasks with dependencies, course scheduling, linear ordering of vertices in DAG.</p>
+        <span class="algo-label">KEYWORDS</span>
+        <p class="algo-text">dependencies, prerequisites, course schedule, directed acyclic graph, ordering</p>
+        <div class="algo-examples">EXAMPLES: Course Schedule I &amp; II, Alien Dictionary</div>
+      </div>
+
+      <div class="algo-card">
+        <h3>DIJKSTRA'S ALGORITHM</h3>
+        <span class="algo-label">WHEN TO USE</span>
+        <p class="algo-text">Finding shortest paths in weighted graphs with non-negative edge weights. Use priority queue for best performance.</p>
+        <span class="algo-label">KEYWORDS</span>
+        <p class="algo-text">shortest path, weighted graph, minimum cost, distance, network, routing</p>
+        <div class="algo-examples">EXAMPLES: Network Delay Time, Cheapest Flights Within K Stops</div>
+      </div>
+
+      <div class="algo-card">
+        <h3>GREEDY ALGORITHMS</h3>
+        <span class="algo-label">WHEN TO USE</span>
+        <p class="algo-text">Optimization problems where locally optimal choice leads to globally optimal solution. Validate carefully.</p>
+        <span class="algo-label">KEYWORDS</span>
+        <p class="algo-text">maximum/minimum, optimal, greedy choice, activity selection, scheduling, interval</p>
+        <div class="algo-examples">EXAMPLES: Jump Game, Gas Station, Non-overlapping Intervals</div>
+      </div>
+    </div>
+
+    <div class="info-box">
+      <h4>OPTIMIZATION WARNING SIGNS</h4>
+      <ul>
+        <li><strong>Nested loops with same variable</strong> — Two pointers might work</li>
+        <li><strong>Recursive calls with same parameters</strong> — Memoization needed</li>
+        <li><strong>Searching in sorted data</strong> — Binary search opportunity</li>
+        <li><strong>Finding extremes repeatedly</strong> — Heap/Priority queue</li>
+        <li><strong>Counting occurrences</strong> — Hash map for O(1) lookups</li>
+        <li><strong>Range queries</strong> — Segment tree or prefix sums</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- Quote (static fallback) kept for continuity but can be left or removed -->
+  <div class="quote-section">
+    <p class="quote-text">"The expert in anything was once a beginner."</p>
+    <p class="quote-author">— HELEN HAYES</p>
+  </div>
+
+  <!-- ACTION PLAN -->
+  <div class="container" id="plan">
+    <h2 class="section-title">YOUR 8-WEEK ACTION PLAN</h2>
+    <p class="section-subtitle">From foundation to expert level mastery</p>
+
+    <div class="timeline">
+      <div class="timeline-item">
+        <div class="timeline-week">WEEK 1-2</div>
+        <h3 class="timeline-title">Foundation Building</h3>
+        <p class="timeline-desc">Master Hash Maps, Two Pointers, and Sliding Window. Practice 3-5 easy problems daily. Focus on understanding patterns over speed.</p>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-week">WEEK 3-4</div>
+        <h3 class="timeline-title">Core Algorithms</h3>
+        <p class="timeline-desc">Master BFS, DFS, Binary Search, and Basic DP. Practice 2-3 medium problems daily. Focus on recognizing when to use each algorithm.</p>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-week">WEEK 5-6</div>
+        <h3 class="timeline-title">Advanced Patterns &amp; Problem Types</h3>
+        <p class="timeline-desc">Tackle Tries, DSU, Segment Trees, Monotonic structures, and advanced DP. Solve 1-2 hard problems every other day. Build short notes for pattern recognition.</p>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-week">WEEK 7</div>
+        <h3 class="timeline-title">Mock Interviews &amp; Timed Practice</h3>
+        <p class="timeline-desc">Simulate interview conditions: 45–60 minute mock interviews, pair-programming or whiteboard style. Analyse mistakes, write clean solutions and discuss trade-offs.</p>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-week">WEEK 8</div>
+        <h3 class="timeline-title">Refinement &amp; Final Prep</h3>
+        <p class="timeline-desc">Polish weak areas, revisit tricky problems, build a cheat-sheet of algorithms and edge cases. Do 2 full mock interviews and 3 timed contests to finish strong.</p>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-week">GRADUATION</div>
+        <h3 class="timeline-title">Go Live</h3>
+        <p class="timeline-desc">Apply consistently. Use your notes during interviews, reflect after each session, and iterate on feedback. Confidence and clarity beat rushing—you got this.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- SECOND QUOTE ROTATOR (after timeline) -->
+  <section class="quote-section">
+    <div
+      class="quote-rotator"
+      data-duration="9000"
+      data-quotes='[
+        {"text":"The best way to predict the future is to create it.","author":"— PETER DRUCKER"},
+        {"text":"Don't watch the clock; do what it does. Keep going.","author":"— SAM LEVENSON"},
+        {"text":"Focus on being productive instead of busy.","author":"— TIM FERRISS"}
+      ]'>
+      <div class="quote-inner">
+        <blockquote class="quote-text" aria-live="polite">"The best way to predict the future is to create it."</blockquote>
+        <div class="quote-author">— PETER DRUCKER</div>
+      </div>
+
+      <div class="quote-controls">
+        <div class="progress-wrap" aria-hidden="true">
+          <div class="progress-bar"></div>
+        </div>
+        <input class="progress-slider" type="range" min="0" max="100" value="0" aria-label="Quote progress slider" />
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="footer-content">
+      <ul class="footer-links">
+        <li><a href="#home">Home</a></li>
+        <li><a href="#approach">Approach</a></li>
+        <li><a href="#algorithms">Algorithms</a></li>
+        <li><a href="#plan">Plan</a></li>
+      </ul>
+
+      <div class="copyright">© <span id="year"></span> Algorithm Mastery — All rights reserved</div>
+    </div>
+  </footer>
+
+  <!-- JavaScript: Quote rotator + Footer year -->
+  <script>
+    (function () {
+      // Utility: parse data-quotes attribute safely
+      function parseQuotesAttr(el) {
+        const dq = el.getAttribute('data-quotes');
+        if (!dq) return null;
+        try { const parsed = JSON.parse(dq); if (Array.isArray(parsed) && parsed.length) return parsed; } catch (e) { /* ignore */ }
+        return null;
+      }
+
+      function initRotator(el) {
+        const duration = parseInt(el.getAttribute('data-duration')) || 8000;
+        const slider = el.querySelector('.progress-slider');
+        const progressBar = el.querySelector('.progress-bar');
+        const quoteTextEl = el.querySelector('.quote-text');
+        const authorEl = el.querySelector('.quote-author');
+
+        const attrQuotes = parseQuotesAttr(el);
+        const DEFAULT_QUOTES = [
+          { text: quoteTextEl.textContent || "Success is not final.", author: authorEl.textContent || "" }
+        ];
+        const quotes = attrQuotes || DEFAULT_QUOTES;
+
+        let idx = 0;
+        let running = true;
+        let progress = 0; // 0..100
+        let lastTick = performance.now();
+
+        function showQuote(i, instant) {
+          const q = quotes[i % quotes.length];
+          // fade out / in
+          quoteTextEl.classList.add('quote-fade-out');
+          authorEl.classList.add('quote-fade-out');
+          setTimeout(() => {
+            quoteTextEl.textContent = q.text;
+            authorEl.textContent = q.author || '';
+            quoteTextEl.classList.remove('quote-fade-out');
+            authorEl.classList.remove('quote-fade-out');
+            quoteTextEl.classList.add('quote-fade-in');
+            authorEl.classList.add('quote-fade-in');
+            setTimeout(() => {
+              quoteTextEl.classList.remove('quote-fade-in');
+              authorEl.classList.remove('quote-fade-in');
+            }, 420);
+          }, instant ? 0 : 320);
+        }
+
+        showQuote(idx, true);
+
+        function tick(now) {
+          if (!running) { lastTick = now; requestAnimationFrame(tick); return; }
+          const elapsed = now - lastTick;
+          lastTick = now;
+
+          progress += (elapsed / duration) * 100;
+          if (progress >= 100) {
+            progress = 0;
+            idx = (idx + 1) % quotes.length;
+            showQuote(idx, false);
+          }
+
+          const pct = Math.max(0, Math.min(100, progress));
+          progressBar.style.width = pct + '%';
+          if (slider) slider.value = Math.round(pct);
+
+          requestAnimationFrame(tick);
+        }
+
+        if (slider) {
+          slider.addEventListener('input', (e) => {
+            progress = Number(e.target.value);
+            progressBar.style.width = progress + '%';
+          });
+          slider.addEventListener('change', (e) => {
+            if (Number(e.target.value) >= 100) {
+              progress = 0;
+              idx = (idx + 1) % quotes.length;
+              showQuote(idx, false);
+            }
+          });
+          // pause auto-advance while interacting
+          slider.addEventListener('pointerdown', () => { running = false; });
+          slider.addEventListener('pointerup', () => { running = true; lastTick = performance.now(); });
+          slider.addEventListener('touchstart', () => { running = false; });
+          slider.addEventListener('touchend', () => { running = true; lastTick = performance.now(); });
+        }
+
+        lastTick = performance.now();
+        requestAnimationFrame(tick);
+
+        // pause when not visible
+        const obs = new IntersectionObserver((entries) => {
+          entries.forEach(entry => { running = entry.isIntersecting; if (running) lastTick = performance.now(); });
+        }, { threshold: 0.1 });
+        obs.observe(el);
+      }
+
+      document.addEventListener('DOMContentLoaded', () => {
+        const els = document.querySelectorAll('.quote-rotator');
+        els.forEach(el => initRotator(el));
+
+        // footer year
+        const y = new Date().getFullYear();
+        const ely = document.getElementById('year');
+        if (ely) ely.textContent = y;
+      });
+    })();
+  </script>
+</body>
+</html>
