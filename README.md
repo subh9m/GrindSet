@@ -39,5 +39,3 @@ Perfect for developers and learners chasing long-term progress.
 
 ---
 
-## 🧱 Folder Structure
-
