@@ -1360,6 +1360,187 @@ void dfs_hld(int u,int p,int h){ ... }
 </section>
 
 
+<!-- NOTHING-STYLE FOCUS TIMER (FULLSCREEN MODE) -->
+<section class="nothing-focus-timer">
+  <div class="timer-display" id="nothingTimerDisplay">25:00</div>
+  <div class="timer-dots" id="nothingTimerDots"></div>
+  <div class="timer-controls">
+    <button id="startNothingTimer" class="timer-btn">START</button>
+    <button id="resetNothingTimer" class="timer-btn">RESET</button>
+  </div>
+  <p class="timer-status" id="nothingTimerStatus">Stay focused.</p>
+</section>
+
+<style>
+  /* --- NOTHING MONOCHROME THEME --- */
+  .nothing-focus-timer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.2rem;
+    font-family: "IBM Plex Mono", monospace;
+    background: transparent;
+    color: #fff;
+    text-align: center;
+    padding: 2rem;
+  }
+
+  .nothing-focus-timer .timer-display {
+    font-size: 3rem;
+    color: #f00;
+    letter-spacing: 2px;
+    text-shadow: 0 0 8px #f00;
+  }
+
+  .nothing-focus-timer .timer-dots {
+    display: flex;
+    gap: 6px;
+  }
+
+  .nothing-focus-timer .dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: #111;
+    transition: background-color 0.3s, box-shadow 0.3s;
+  }
+
+  .nothing-focus-timer .dot.active {
+    background: #f00;
+    box-shadow: 0 0 6px #f00;
+  }
+
+  .nothing-focus-timer .timer-controls {
+    display: flex;
+    gap: 1rem;
+  }
+
+  .nothing-focus-timer .timer-btn {
+    background: transparent;
+    border: 1px solid #f00;
+    color: #f00;
+    padding: 0.4rem 1rem;
+    cursor: pointer;
+    font-size: 0.9rem;
+    letter-spacing: 1px;
+    transition: background 0.3s, color 0.3s;
+  }
+
+  .nothing-focus-timer .timer-btn:hover {
+    background: #f00;
+    color: #000;
+  }
+
+  .nothing-focus-timer .timer-status {
+    font-size: 0.9rem;
+    color: #aaa;
+    letter-spacing: 0.5px;
+  }
+
+  /* Optional fullscreen styling */
+  .fullscreen-active {
+    background: #000;
+    width: 100vw;
+    height: 100vh;
+    justify-content: center;
+  }
+</style>
+
+<script>
+  // --- NOTHING-STYLE FOCUS TIMER SCRIPT (WITH FULLSCREEN) ---
+  const timerSection = document.querySelector(".nothing-focus-timer");
+  const display = document.getElementById("nothingTimerDisplay");
+  const dotsContainer = document.getElementById("nothingTimerDots");
+  const startBtn = document.getElementById("startNothingTimer");
+  const resetBtn = document.getElementById("resetNothingTimer");
+  const statusText = document.getElementById("nothingTimerStatus");
+
+  const totalDots = 10;
+  for (let i = 0; i < totalDots; i++) {
+    const dot = document.createElement("div");
+    dot.classList.add("dot");
+    dotsContainer.appendChild(dot);
+  }
+
+  let time = 25 * 60; // 25 minutes
+  let interval = null;
+  let running = false;
+
+  function updateDisplay() {
+    const mins = Math.floor(time / 60);
+    const secs = time % 60;
+    display.textContent = `${mins.toString().padStart(2, "0")}:${secs
+      .toString()
+      .padStart(2, "0")}`;
+  }
+
+  function updateDots() {
+    const dots = document.querySelectorAll(".nothing-focus-timer .dot");
+    const progress = 1 - time / (25 * 60);
+    const activeDots = Math.floor(progress * totalDots);
+    dots.forEach((dot, i) =>
+      dot.classList.toggle("active", i < activeDots)
+    );
+  }
+
+  async function enterFullscreen() {
+    const elem = document.documentElement;
+    if (!document.fullscreenElement) {
+      try {
+        await elem.requestFullscreen();
+        timerSection.classList.add("fullscreen-active");
+      } catch (err) {
+        console.warn("Fullscreen not available:", err);
+      }
+    }
+  }
+
+  function exitFullscreen() {
+    if (document.fullscreenElement) {
+      document.exitFullscreen();
+      timerSection.classList.remove("fullscreen-active");
+    }
+  }
+
+  function startTimer() {
+    if (running) return;
+    enterFullscreen();
+    running = true;
+    statusText.textContent = "Focus mode: ON";
+    interval = setInterval(() => {
+      if (time > 0) {
+        time--;
+        updateDisplay();
+        updateDots();
+      } else {
+        clearInterval(interval);
+        statusText.textContent = "Time’s up! Take a break.";
+        running = false;
+        exitFullscreen();
+      }
+    }, 1000);
+  }
+
+  function resetTimer() {
+    clearInterval(interval);
+    time = 25 * 60;
+    running = false;
+    updateDisplay();
+    updateDots();
+    statusText.textContent = "Stay focused.";
+    exitFullscreen();
+  }
+
+  startBtn.addEventListener("click", startTimer);
+  resetBtn.addEventListener("click", resetTimer);
+
+  updateDisplay();
+  updateDots();
+</script>
+
+
+
+
   <footer>
     <div class="footer-content">
       <ul class="footer-links">
