@@ -5,7 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Algorithm Mastery Guide</title>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
-  <!-- Put this inside <head> -->
   <link rel="icon" href="favicon.png" type="image/x-icon">
 
   <style>
@@ -14,8 +13,11 @@
     body {
       font-family: 'Inter', -apple-system, sans-serif;
       background-color: #000000;
-      color: #ffffff;
-      line-height: 1.8;
+      /* Dynamic background gradient */
+      background-image: radial-gradient(circle at 10% 20%, rgba(255, 0, 0, 0.1), transparent 40%),
+                        radial-gradient(circle at 90% 80%, rgba(255, 0, 0, 0.08), transparent 50%);
+      color: #e0e0e0;
+      line-height: 1.7;
       overflow-x: hidden;
     }
 
@@ -24,9 +26,27 @@
       position: fixed;
       top: 0;
       width: 100%;
-      background-color: #000000;
-      border-bottom: 1px solid #ffffff;
+      /* Glassmorphism effect for a modern look */
+      background-color: rgba(0, 0, 0, 0.6);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border-bottom: 1px solid #333333;
       z-index: 1000;
+    }
+    
+    .algo-code {
+      background-color: #0d0d0d;
+      padding: 15px;
+      border-radius: 8px;
+      overflow-x: auto;
+      white-space: pre-wrap;
+      word-wrap: break-word;
+      font-family: 'Fira Code', 'Source Code Pro', 'JetBrains Mono', 'Consolas', monospace;
+      font-size: 14px;
+      max-width: 100%;
+      box-sizing: border-box;
+      border: 1px solid #222;
+      margin-top: 10px;
     }
 
     nav {
@@ -67,7 +87,7 @@
       margin-top: 80px;
       padding: 120px 40px;
       text-align: center;
-      border-bottom: 1px solid #ffffff;
+      border-bottom: 1px solid #333333;
     }
 
     .hero h1 {
@@ -76,6 +96,7 @@
       letter-spacing: -2px;
       margin-bottom: 30px;
       line-height: 1.1;
+      color: #fff;
     }
 
     .hero p {
@@ -90,9 +111,10 @@
     .cta-button {
       display: inline-block;
       padding: 18px 50px;
-      background-color: #000000;
+      background-color: transparent;
       color: #ff0000;
       border: 2px solid #ff0000;
+      border-radius: 8px;
       text-decoration: none;
       font-size: 14px;
       font-weight: 600;
@@ -103,6 +125,7 @@
     .cta-button:hover {
       background-color: #ff0000;
       color: #000000;
+      box-shadow: 0 5px 20px rgba(255, 0, 0, 0.3);
     }
 
     /* Container */
@@ -119,6 +142,9 @@
       letter-spacing: -1px;
       margin-bottom: 20px;
       text-align: center;
+      color: #fff;
+      /* Dynamic glow effect */
+      text-shadow: 0 0 15px rgba(255, 0, 0, 0.3);
     }
 
     .section-subtitle {
@@ -139,14 +165,21 @@
     }
 
     .step-card {
-      border: 1px solid #ffffff;
+      border: 1px solid #333333;
+      background-color: #0a0a0a;
       padding: 40px;
       transition: all 0.3s ease;
+      border-radius: 12px;
+      /* Flexbox for better internal alignment */
+      display: flex;
+      flex-direction: column;
     }
 
     .step-card:hover {
       border-color: #ff0000;
-      transform: translateY(-5px);
+      transform: translateY(-8px);
+      /* Dynamic glow on hover */
+      box-shadow: 0 10px 25px rgba(255, 0, 0, 0.15);
     }
 
     .step-number {
@@ -162,6 +195,7 @@
       font-weight: 600;
       letter-spacing: 1px;
       margin-bottom: 15px;
+      color: #fff;
     }
 
     .step-card p {
@@ -169,13 +203,15 @@
       font-weight: 300;
       line-height: 1.6;
       opacity: 0.8;
+      flex-grow: 1; /* Allows paragraph to fill space */
     }
 
     /* Constraint Table */
     .table-wrapper {
-      border: 1px solid #ffffff;
+      border: 1px solid #333333;
+      border-radius: 8px;
       margin: 60px 0;
-      overflow-x: auto;
+      overflow: hidden;
     }
 
     table {
@@ -184,14 +220,14 @@
     }
 
     th {
-      background-color: #000000;
+      background-color: #111111;
       color: #ff0000;
       padding: 20px;
       text-align: left;
       font-size: 14px;
       font-weight: 600;
       letter-spacing: 1px;
-      border-bottom: 1px solid #ffffff;
+      border-bottom: 1px solid #333333;
     }
 
     td {
@@ -213,18 +249,29 @@
     }
 
     .algo-card {
-      border: 1px solid #ffffff;
-      padding: 40px;
+      border: 1px solid #333333;
+      background-color: #0a0a0a;
+      padding: 30px;
       transition: all 0.3s ease;
+      border-radius: 12px;
+      /* Core Fix: Use Flexbox to align content vertically */
+      display: flex;
+      flex-direction: column;
+      height: 100%; /* Ensures cards in a row have same height */
     }
 
-    .algo-card:hover { border-color: #ff0000; }
+    .algo-card:hover {
+      border-color: #ff0000;
+      transform: translateY(-8px);
+      box-shadow: 0 10px 25px rgba(255, 0, 0, 0.15);
+    }
 
     .algo-card h3 {
       font-size: 28px;
       font-weight: 600;
       margin-bottom: 20px;
       letter-spacing: 1px;
+      color: #fff;
     }
 
     .algo-label {
@@ -242,10 +289,12 @@
       font-weight: 300;
       line-height: 1.6;
       opacity: 0.8;
+      flex-grow: 1; /* Pushes content below it down */
     }
 
     .algo-examples {
-      margin-top: 20px;
+      /* Core Fix: This block and anything after it will be pushed down */
+      margin-top: auto; 
       padding-top: 20px;
       border-top: 1px solid #333333;
       font-size: 13px;
@@ -254,10 +303,11 @@
 
     /* Info Box */
     .info-box {
-      border: 1px solid #ffffff;
+      border: 1px solid #333333;
+      background-color: #0a0a0a;
+      border-radius: 12px;
       padding: 40px;
       margin: 60px 0;
-      background-color: #000000;
     }
 
     .info-box h4 {
@@ -278,20 +328,38 @@
     .info-box li:hover { padding-left: 15px; color: #ff0000; }
     .info-box li strong { font-weight: 600; color: #ffffff; }
 
-    /* Quote Section - original fallback (hidden because we use rotator) */
-    .quote-section { text-align: center; padding: 80px 40px; border-top: 1px solid #ffffff; border-bottom: 1px solid #ffffff; margin: 80px 0; }
+    /* Quote Section */
+    .quote-section {
+      text-align: center;
+      padding: 80px 40px;
+      border-top: 1px solid #333333;
+      border-bottom: 1px solid #333333;
+      margin: 80px 0;
+    }
 
-    .quote-text { font-size: 32px; font-weight: 300; line-height: 1.4; letter-spacing: 0px; max-width: 900px; margin: 0 auto; }
-    .quote-author { font-size: 14px; font-weight: 600; letter-spacing: 2px; margin-top: 30px; color: #ff0000; }
+    .quote-text {
+      font-size: 32px;
+      font-weight: 300;
+      line-height: 1.4;
+      letter-spacing: 0px;
+      max-width: 900px;
+      margin: 0 auto;
+      color: #fff;
+    }
+    
+    .quote-author {
+      font-size: 14px;
+      font-weight: 600;
+      letter-spacing: 2px;
+      margin-top: 30px;
+      color: #ff0000;
+    }
 
-    /* Advanced Section */
-    .advanced-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(400px, 1fr)); gap: 30px; margin-top: 60px; }
-
-    /* Action Plan */
+    /* Action Plan Timeline */
     .timeline { margin-top: 60px; }
 
     .timeline-item {
-      border-left: 2px solid #ffffff;
+      border-left: 2px solid #333333;
       padding-left: 40px;
       padding-bottom: 60px;
       position: relative;
@@ -303,12 +371,13 @@
     .timeline-item::before {
       content: '';
       position: absolute;
-      left: -6px;
+      left: -7px; /* Adjusted for border width */
       top: 0;
-      width: 10px;
-      height: 10px;
+      width: 12px;
+      height: 12px;
       background-color: #ff0000;
       border-radius: 50%;
+      border: 2px solid #000;
     }
 
     .timeline-week {
@@ -319,11 +388,27 @@
       margin-bottom: 10px;
     }
 
-    .timeline-title { font-size: 24px; font-weight: 600; margin-bottom: 15px; }
-    .timeline-desc { font-size: 14px; font-weight: 300; opacity: 0.8; line-height: 1.6; }
+    .timeline-title {
+      font-size: 24px;
+      font-weight: 600;
+      margin-bottom: 15px;
+      color: #fff;
+    }
+
+    .timeline-desc {
+      font-size: 14px;
+      font-weight: 300;
+      opacity: 0.8;
+      line-height: 1.6;
+    }
 
     /* Footer */
-    footer { border-top: 1px solid #ffffff; padding: 60px 40px; text-align: center; }
+    footer {
+      border-top: 1px solid #333333;
+      padding: 60px 40px;
+      text-align: center;
+    }
+    
     .footer-content { max-width: 1400px; margin: 0 auto; }
     .footer-links { display: flex; justify-content: center; gap: 40px; list-style: none; margin-bottom: 30px; }
     .footer-links a { color: #ffffff; text-decoration: none; font-size: 14px; letter-spacing: 1px; transition: color 0.3s ease; }
@@ -331,14 +416,14 @@
     .copyright { font-size: 12px; font-weight: 300; opacity: 0.5; letter-spacing: 1px; }
 
     /* Divider */
-    .divider { height: 1px; background-color: #ffffff; margin: 80px 0; }
+    .divider { height: 1px; background-color: #333333; margin: 80px 0; }
 
     /* Responsive */
     @media (max-width: 768px) {
       .hero h1 { font-size: 48px; }
       .hero p { font-size: 16px; }
       .section-title { font-size: 36px; }
-      .approach-grid, .algo-grid, .advanced-grid { grid-template-columns: 1fr; }
+      .approach-grid, .algo-grid { grid-template-columns: 1fr; }
       nav { flex-direction: column; gap: 20px; }
       .nav-links { gap: 20px; }
       .quote-text { font-size: 24px; }
@@ -347,17 +432,12 @@
     /* Smooth Scroll */
     html { scroll-behavior: smooth; }
 
-    /* ---------------------------
-       Quote rotator styles (append)
-       --------------------------- */
+    /* Quote rotator styles */
     .quote-rotator {
-      text-align: center;
       padding: 60px 40px;
-      border-top: 1px solid #ffffff;
-      border-bottom: 1px solid #ffffff;
-      margin: 80px 0;
+      margin: -80px -40px; /* Counteract parent padding */
       position: relative;
-      background: #000000;
+      background: transparent;
     }
 
     .quote-rotator .quote-inner {
@@ -464,7 +544,7 @@
     <a href="#approach" class="cta-button">START LEARNING</a>
   </section>
 
-  <!-- QUOTE ROTATOR (replaces first quote) -->
+  <!-- QUOTE ROTATOR -->
   <section class="quote-section">
     <div
       class="quote-rotator"
@@ -612,6 +692,12 @@
         <span class="algo-label">KEYWORDS</span>
         <p class="algo-text">count, frequency, unique, duplicate, seen before, complement, pair sum, anagram, group by</p>
         <div class="algo-examples">EXAMPLES: Two Sum, Group Anagrams, Subarray Sum Equals K</div>
+        <span class="algo-label">SAMPLE CODE</span>
+        <pre class="algo-code">
+&lt;!-- Count frequency of elements --&gt;
+unordered_map&lt;int,int&gt; freq;
+for(int x : arr) freq[x]++;
+        </pre>
       </div>
 
       <div class="algo-card">
@@ -621,6 +707,17 @@
         <span class="algo-label">KEYWORDS</span>
         <p class="algo-text">sorted array, find target, logarithmic time, first/last occurrence, peak, minimum/maximum in range, rotated</p>
         <div class="algo-examples">EXAMPLES: Search in Rotated Array, Find Peak Element, Sqrt(x)</div>
+        <span class="algo-label">SAMPLE CODE</span>
+        <pre class="algo-code">
+&lt;!-- Standard binary search --&gt;
+int low = 0, high = n-1;
+while(low &lt;= high){
+    int mid = low + (high-low)/2;
+    if(arr[mid] == target) return mid;
+    else if(arr[mid] &lt; target) low = mid+1;
+    else high = mid-1;
+}
+        </pre>
       </div>
 
       <div class="algo-card">
@@ -630,6 +727,17 @@
         <span class="algo-label">KEYWORDS</span>
         <p class="algo-text">subarray, substring, contiguous, window, maximum/minimum length, sum equals k, at most k, consecutive</p>
         <div class="algo-examples">EXAMPLES: Longest Substring Without Repeating, Minimum Window Substring</div>
+        <span class="algo-label">SAMPLE CODE</span>
+        <pre class="algo-code">
+&lt;!-- Max sum subarray of size k --&gt;
+int maxSum = 0, sum = 0;
+for(int i=0;i&lt;k;i++) sum += arr[i];
+maxSum = sum;
+for(int i=k;i&lt;n;i++){
+    sum += arr[i] - arr[i-k];
+    maxSum = max(maxSum, sum);
+}
+        </pre>
       </div>
 
       <div class="algo-card">
@@ -639,6 +747,17 @@
         <span class="algo-label">KEYWORDS</span>
         <p class="algo-text">sorted array, pair, triplet, palindrome, opposite ends, meeting in middle, remove duplicates, in-place</p>
         <div class="algo-examples">EXAMPLES: 3Sum, Container With Most Water, Valid Palindrome</div>
+        <span class="algo-label">SAMPLE CODE</span>
+        <pre class="algo-code">
+&lt;!-- Two sum in sorted array --&gt;
+int left = 0, right = n-1;
+while(left &lt; right){
+    int sum = arr[left] + arr[right];
+    if(sum == target) break;
+    else if(sum &lt; target) left++;
+    else right--;
+}
+        </pre>
       </div>
 
       <div class="algo-card">
@@ -648,6 +767,23 @@
         <span class="algo-label">KEYWORDS</span>
         <p class="algo-text">shortest path, level-order, traverse, connected components, cycle detection, all paths, maximum depth</p>
         <div class="algo-examples">EXAMPLES: Number of Islands, Level Order Traversal, Course Schedule</div>
+        <span class="algo-label">SAMPLE CODE</span>
+        <pre class="algo-code">
+&lt;!-- BFS traversal --&gt;
+queue&lt;int&gt; q;
+vector&lt;bool&gt; visited(n,false);
+q.push(start);
+visited[start] = true;
+while(!q.empty()){
+    int node = q.front(); q.pop();
+    for(int nei : adj[node]){
+        if(!visited[nei]){
+            visited[nei] = true;
+            q.push(nei);
+        }
+    }
+}
+        </pre>
       </div>
 
       <div class="algo-card">
@@ -657,6 +793,18 @@
         <span class="algo-label">KEYWORDS</span>
         <p class="algo-text">all combinations, all permutations, generate all, place queens, solve puzzle, word search, partition</p>
         <div class="algo-examples">EXAMPLES: N-Queens, Generate Parentheses, Combination Sum</div>
+        <span class="algo-label">SAMPLE CODE</span>
+        <pre class="algo-code">
+&lt;!-- Generate all subsets --&gt;
+void backtrack(vector&lt;int&gt;&amp; nums, vector&lt;int&gt;&amp; curr, int index, vector&lt;vector&lt;int&gt;&gt;&amp; res){
+    res.push_back(curr);
+    for(int i=index;i&lt;nums.size();i++){
+        curr.push_back(nums[i]);
+        backtrack(nums, curr, i+1, res);
+        curr.pop_back(); // undo choice
+    }
+}
+        </pre>
       </div>
 
       <div class="algo-card">
@@ -666,6 +814,16 @@
         <span class="algo-label">KEYWORDS</span>
         <p class="algo-text">maximum/minimum, count ways, optimal, best, overlapping subproblems, subsequence, ways to, longest</p>
         <div class="algo-examples">EXAMPLES: Coin Change, LCS, Edit Distance, House Robber</div>
+        <span class="algo-label">SAMPLE CODE</span>
+        <pre class="algo-code">
+&lt;!-- Fibonacci with DP --&gt;
+vector&lt;int&gt; dp(n+1, -1);
+int fib(int n){
+    if(n&lt;=1) return n;
+    if(dp[n] != -1) return dp[n];
+    return dp[n] = fib(n-1) + fib(n-2);
+}
+        </pre>
       </div>
 
       <div class="algo-card">
@@ -674,16 +832,37 @@
         <p class="algo-text">Need min/max element repeatedly or maintain sorted order while inserting/removing. Perfect for "top k" problems.</p>
         <span class="algo-label">KEYWORDS</span>
         <p class="algo-text">kth largest/smallest, top k, median, priority, merge sorted, closest, running median, k most frequent</p>
-        <div class="algo-examples">EXAMPLES: Kth Largest Element, Merge K Sorted Lists, Find Median</div>
+        <div class="algo-examples">EXAMPLES: Kth Largest Element, Merge K Sorted Lists, Find Median, K Most Frequent Elements</div>
+        <span class="algo-label">SAMPLE CODE</span>
+        <pre class="algo-code">
+// Min Heap
+priority_queue&lt;int, vector&lt;int&gt;, greater&lt;int&gt;&gt; pq;
+pq.push(5); pq.push(2); pq.push(10);
+int top = pq.top(); // 2
+pq.pop();
+        </pre>
       </div>
 
       <div class="algo-card">
-        <h3>MONOTONIC STACK/QUEUE</h3>
+        <h3>MONOTONIC STACK / QUEUE</h3>
         <span class="algo-label">WHEN TO USE</span>
         <p class="algo-text">Finding next greater/smaller element or maintaining elements in increasing/decreasing order efficiently.</p>
         <span class="algo-label">KEYWORDS</span>
         <p class="algo-text">next greater, next smaller, previous greater, largest rectangle, trapping water, stock span</p>
-        <div class="algo-examples">EXAMPLES: Next Greater Element, Largest Rectangle in Histogram</div>
+        <div class="algo-examples">EXAMPLES: Next Greater Element, Largest Rectangle in Histogram, Trapping Rain Water</div>
+        <span class="algo-label">SAMPLE CODE</span>
+        <pre class="algo-code">
+// Next Greater Element
+vector&lt;int&gt; nge(n, -1);
+stack&lt;int&gt; s;
+for(int i=0; i&lt;n; i++){
+    while(!s.empty() &amp;&amp; arr[i] &gt; arr[s.top()]){
+        nge[s.top()] = arr[i];
+        s.pop();
+    }
+    s.push(i);
+}
+        </pre>
       </div>
 
       <div class="algo-card">
@@ -692,7 +871,143 @@
         <p class="algo-text">Calculate range sums quickly or when subarray sums appear frequently. Preprocessing for O(1) queries.</p>
         <span class="algo-label">KEYWORDS</span>
         <p class="algo-text">range sum, subarray sum, sum between indices, continuous subarray, multiple queries</p>
-        <div class="algo-examples">EXAMPLES: Range Sum Query, Subarray Sum Equals K</div>
+        <div class="algo-examples">EXAMPLES: Range Sum Query, Subarray Sum Equals K, 2D Prefix Sum</div>
+        <span class="algo-label">SAMPLE CODE</span>
+        <pre class="algo-code">
+// 1D Prefix Sum
+vector&lt;int&gt; prefix(n + 1, 0);
+for(int i=0; i&lt;n; i++)
+    prefix[i+1] = prefix[i] + arr[i];
+int sum = prefix[j+1] - prefix[i];
+        </pre>
+      </div>
+      
+      <div class="algo-card">
+        <h3>FLOYD’S CYCLE DETECTION</h3>
+        <span class="algo-label">WHEN TO USE</span>
+        <p class="algo-text">Detect cycles in linked lists or arrays when you can only traverse forward. Also used to find duplicates without extra space.</p>
+        <span class="algo-label">KEYWORDS</span>
+        <p class="algo-text">cycle detection, loop, linked list, duplicate number, slow and fast pointers</p>
+        <div class="algo-examples">EXAMPLES: Linked List Cycle, Find Duplicate Number</div>
+        <span class="algo-label">SAMPLE CODE</span>
+        <pre class="algo-code">
+ListNode* slow = head, *fast = head;
+while (fast &amp;&amp; fast-&gt;next) {
+    slow = slow-&gt;next;
+    fast = fast-&gt;next-&gt;next;
+    if (slow == fast) return true;
+}
+return false;
+        </pre>
+      </div>
+      
+      <div class="algo-card">
+        <h3>KADANE’S ALGORITHM</h3>
+        <span class="algo-label">WHEN TO USE</span>
+        <p class="algo-text">Find maximum (or minimum) sum of a contiguous subarray efficiently in O(n).</p>
+        <span class="algo-label">KEYWORDS</span>
+        <p class="algo-text">maximum subarray, contiguous, dynamic programming, prefix sum</p>
+        <div class="algo-examples">EXAMPLES: Maximum Subarray, Stock Buy and Sell</div>
+        <span class="algo-label">SAMPLE CODE</span>
+        <pre class="algo-code">
+int maxSum = arr[0], curr = arr[0];
+for (int i=1; i&lt;n; i++) {
+    curr = max(arr[i], curr + arr[i]);
+    maxSum = max(maxSum, curr);
+}
+        </pre>
+      </div>
+
+      <div class="algo-card">
+        <h3>BINARY SEARCH ON ANSWER</h3>
+        <span class="algo-label">WHEN TO USE</span>
+        <p class="algo-text">When minimizing or maximizing a feasible value that satisfies a condition (e.g., minimum largest subarray sum).</p>
+        <span class="algo-label">KEYWORDS</span>
+        <p class="algo-text">minimize maximum, maximize minimum, feasibility check, search space</p>
+        <div class="algo-examples">EXAMPLES: Split Array Largest Sum, Koko Eating Bananas</div>
+        <span class="algo-label">SAMPLE CODE</span>
+        <pre class="algo-code">
+int low=min_val, high=max_val;
+while (low < high) {
+    int mid = low + (high-low)/2;
+    if (check(mid)) high = mid;
+    else low = mid + 1;
+}
+return low;
+        </pre>
+      </div>
+
+      <div class="algo-card">
+        <h3>BIT MANIPULATION</h3>
+        <span class="algo-label">WHEN TO USE</span>
+        <p class="algo-text">Use binary operations for fast computations, subset generation, or optimization problems.</p>
+        <span class="algo-label">KEYWORDS</span>
+        <p class="algo-text">xor, subset mask, bit count, toggle, check bit, power of two</p>
+        <div class="algo-examples">EXAMPLES: Single Number, Count Bits, Subsets</div>
+        <span class="algo-label">SAMPLE CODE</span>
+        <pre class="algo-code">
+// Count number of set bits in an integer
+int count = 0;
+while (n) {
+    n &amp;= (n - 1);
+    count++;
+}
+        </pre>
+      </div>
+      
+      <div class="algo-card">
+        <h3>TOP-K PATTERNS (HEAP)</h3>
+        <span class="algo-label">WHEN TO USE</span>
+        <p class="algo-text">Find the k-th largest/smallest or top-k frequent elements efficiently using heaps or bucket sort.</p>
+        <span class="algo-label">KEYWORDS</span>
+        <p class="algo-text">top k, kth largest, frequency, heap, priority queue, bucket sort</p>
+        <div class="algo-examples">EXAMPLES: Top K Frequent Elements, Kth Largest Element</div>
+        <span class="algo-label">SAMPLE CODE</span>
+        <pre class="algo-code">
+priority_queue&lt;pair&lt;int,int&gt;, ..., greater&lt;&gt;&gt; pq;
+for (auto &amp;[num, freq] : freqMap) {
+    pq.push({freq, num});
+    if (pq.size() &gt; k) pq.pop();
+}
+        </pre>
+      </div>
+
+      <div class="algo-card">
+        <h3>TRIE (PREFIX TREE)</h3>
+        <span class="algo-label">WHEN TO USE</span>
+        <p class="algo-text">String prefix matching, autocomplete systems, or efficient storage of words sharing common prefixes.</p>
+        <span class="algo-label">KEYWORDS</span>
+        <p class="algo-text">prefix, autocomplete, word search, dictionary, common prefix</p>
+        <div class="algo-examples">EXAMPLES: Implement Trie, Word Search II</div>
+        <span class="algo-label">SAMPLE CODE</span>
+        <pre class="algo-code">
+struct TrieNode {
+    bool end = false;
+    TrieNode* child[26] = {nullptr};
+};
+// ... see full implementation
+        </pre>
+      </div>
+      
+      <div class="algo-card">
+        <h3>GREEDY ALGORITHMS</h3>
+        <span class="algo-label">WHEN TO USE</span>
+        <p class="algo-text">For problems where making the locally optimal choice at each step gives a global optimum.</p>
+        <span class="algo-label">KEYWORDS</span>
+        <p class="algo-text">optimal, greedy choice, scheduling, interval, minimum, maximum</p>
+        <div class="algo-examples">EXAMPLES: Jump Game, Gas Station, Activity Selection</div>
+        <span class="algo-label">SAMPLE CODE</span>
+        <pre class="algo-code">
+// Activity Selection
+sort(act.begin(), act.end(), ...);
+int count = 0, end_time = 0;
+for (auto [s, e] : act) {
+    if (s &gt;= end_time) {
+      count++;
+      end_time = e;
+    }
+}
+        </pre>
       </div>
     </div>
 
@@ -701,59 +1016,188 @@
     <h2 class="section-title">ADVANCED ALGORITHMS</h2>
     <p class="section-subtitle">Level up with these sophisticated techniques</p>
 
-    <div class="advanced-grid">
-      <div class="algo-card">
-        <h3>TRIE (PREFIX TREE)</h3>
-        <span class="algo-label">WHEN TO USE</span>
-        <p class="algo-text">String prefix matching, autocomplete systems, or efficient storage of strings with common prefixes.</p>
-        <span class="algo-label">KEYWORDS</span>
-        <p class="algo-text">prefix, autocomplete, word search, dictionary, common prefix, word break</p>
-        <div class="algo-examples">EXAMPLES: Implement Trie, Word Search II, Longest Word</div>
-      </div>
-
+    <div class="algo-grid">
       <div class="algo-card">
         <h3>UNION-FIND (DSU)</h3>
         <span class="algo-label">WHEN TO USE</span>
-        <p class="algo-text">Dynamic connectivity problems, detecting cycles in undirected graphs, grouping elements into connected components.</p>
+        <p class="algo-text">Efficiently manage groups of connected components. Used in Kruskal’s MST and connectivity queries.</p>
         <span class="algo-label">KEYWORDS</span>
-        <p class="algo-text">connected components, union, find, cycle detection, dynamic connectivity, friends, groups</p>
-        <div class="algo-examples">EXAMPLES: Number of Connected Components, Redundant Connection</div>
+        <p class="algo-text">union by rank, path compression, disjoint set, connectivity</p>
+        <div class="algo-examples">EXAMPLES: Kruskal’s Algorithm, Redundant Connection</div>
+        <span class="algo-label">SAMPLE CODE</span>
+        <pre class="algo-code">
+int find(int x) {
+    if (parent[x] != x)
+        parent[x] = find(parent[x]);
+    return parent[x];
+}
+void unite(int x, int y) { ... }
+        </pre>
+      </div>
+
+      <div class="algo-card">
+        <h3>KRUSKAL’S MST</h3>
+        <span class="algo-label">WHEN TO USE</span>
+        <p class="algo-text">Find the minimum total edge weight connecting all nodes in a weighted undirected graph.</p>
+        <span class="algo-label">KEYWORDS</span>
+        <p class="algo-text">MST, minimum cost, undirected graph, edges, connectivity</p>
+        <div class="algo-examples">EXAMPLES: Connecting Cities, Minimum Network Cost</div>
+        <span class="algo-label">SAMPLE CODE</span>
+        <pre class="algo-code">
+sort(edges.begin(), edges.end());
+int total = 0;
+for (auto &amp;e : edges) {
+    if (find(e.u) != find(e.v)) {
+        unite(e.u, e.v);
+        total += e.w;
+    }
+}
+        </pre>
       </div>
 
       <div class="algo-card">
         <h3>SEGMENT TREE</h3>
         <span class="algo-label">WHEN TO USE</span>
-        <p class="algo-text">Range queries with updates on arrays. When both query and update operations need to be efficient.</p>
+        <p class="algo-text">Efficiently perform range queries and updates on arrays (e.g., sum or min queries).</p>
         <span class="algo-label">KEYWORDS</span>
-        <p class="algo-text">range sum, range minimum/maximum, update range, interval queries, lazy propagation</p>
-        <div class="algo-examples">EXAMPLES: Range Sum Query - Mutable, Count of Smaller Numbers</div>
+        <p class="algo-text">range sum, range query, update, interval tree</p>
+        <div class="algo-examples">EXAMPLES: Range Sum Query - Mutable</div>
+        <span class="algo-label">SAMPLE CODE</span>
+        <pre class="algo-code">
+void build(...) { ... }
+int query(...) { ... }
+void update(...) { ... }
+        </pre>
       </div>
 
       <div class="algo-card">
         <h3>TOPOLOGICAL SORT</h3>
         <span class="algo-label">WHEN TO USE</span>
-        <p class="algo-text">Ordering tasks with dependencies, course scheduling, linear ordering of vertices in DAG.</p>
+        <p class="algo-text">Order tasks or nodes with dependencies (DAG only). Useful for scheduling or dependency resolution.</p>
         <span class="algo-label">KEYWORDS</span>
-        <p class="algo-text">dependencies, prerequisites, course schedule, directed acyclic graph, ordering</p>
+        <p class="algo-text">dependencies, prerequisites, DAG, ordering, course schedule</p>
         <div class="algo-examples">EXAMPLES: Course Schedule I &amp; II, Alien Dictionary</div>
+        <span class="algo-label">SAMPLE CODE</span>
+        <pre class="algo-code">
+// Kahn's Algorithm (BFS)
+vector&lt;int&gt; indeg(n, 0); ...
+queue&lt;int&gt; q; ...
+while (!q.empty()) { ... }
+        </pre>
       </div>
 
       <div class="algo-card">
         <h3>DIJKSTRA'S ALGORITHM</h3>
         <span class="algo-label">WHEN TO USE</span>
-        <p class="algo-text">Finding shortest paths in weighted graphs with non-negative edge weights. Use priority queue for best performance.</p>
+        <p class="algo-text">Find shortest paths from a single source in weighted graphs with non-negative edges.</p>
         <span class="algo-label">KEYWORDS</span>
-        <p class="algo-text">shortest path, weighted graph, minimum cost, distance, network, routing</p>
+        <p class="algo-text">shortest path, weighted graph, distance, routing, minimum cost</p>
         <div class="algo-examples">EXAMPLES: Network Delay Time, Cheapest Flights Within K Stops</div>
+        <span class="algo-label">SAMPLE CODE</span>
+        <pre class="algo-code">
+vector&lt;int&gt; dist(n, INT_MAX);
+priority_queue&lt;pair&lt;int,int&gt;, ...&gt; pq;
+dist[src] = 0; pq.push({0, src});
+while (!pq.empty()) { ... }
+        </pre>
+      </div>
+      
+      <div class="algo-card">
+        <h3>KMP (STRING MATCHING)</h3>
+        <span class="algo-label">WHEN TO USE</span>
+        <p class="algo-text">Efficient substring search in large strings. Avoids re-scanning previously matched characters.</p>
+        <span class="algo-label">KEYWORDS</span>
+        <p class="algo-text">substring search, pattern matching, LPS array, string search</p>
+        <div class="algo-examples">EXAMPLES: Pattern Search, Repeated Substring Pattern</div>
+        <span class="algo-label">SAMPLE CODE</span>
+        <pre class="algo-code">
+vector&lt;int&gt; buildLPS(string p) { ... }
+bool kmpSearch(string s, string p) { ... }
+        </pre>
       </div>
 
       <div class="algo-card">
-        <h3>GREEDY ALGORITHMS</h3>
+        <h3>FENWICK TREE (BIT)</h3>
         <span class="algo-label">WHEN TO USE</span>
-        <p class="algo-text">Optimization problems where locally optimal choice leads to globally optimal solution. Validate carefully.</p>
+        <p class="algo-text">Efficient prefix/range sum queries and updates in O(log n). Simpler than Segment Tree for sums.</p>
         <span class="algo-label">KEYWORDS</span>
-        <p class="algo-text">maximum/minimum, optimal, greedy choice, activity selection, scheduling, interval</p>
-        <div class="algo-examples">EXAMPLES: Jump Game, Gas Station, Non-overlapping Intervals</div>
+        <p class="algo-text">range sum, prefix sum, update, binary indexed tree</p>
+        <div class="algo-examples">EXAMPLES: Range Sum Query, Inversion Count</div>
+        <span class="algo-label">SAMPLE CODE</span>
+        <pre class="algo-code">
+void update(int i, int val) {
+    for (; i&lt;=n; i += i&amp;-i) bit[i] += val;
+}
+int query(int i) {
+    int sum = 0;
+    for (; i&gt;0; i -= i&amp;-i) sum += bit[i];
+    return sum;
+}
+        </pre>
+      </div>
+      
+      <div class="algo-card">
+        <h3>RABIN-KARP</h3>
+        <span class="algo-label">WHEN TO USE</span>
+        <p class="algo-text">Multiple pattern search using rolling hash. Ideal for substring search in large text.</p>
+        <span class="algo-label">KEYWORDS</span>
+        <p class="algo-text">rolling hash, substring search, pattern matching</p>
+        <div class="algo-examples">EXAMPLES: Search substring, Plagiarism detection</div>
+        <span class="algo-label">SAMPLE CODE</span>
+        <pre class="algo-code">
+const int BASE = 256, MOD = 1e9+7;
+long long ph=0, th=0, h=1;
+// ... hash calculation and comparison
+        </pre>
+      </div>
+
+      <div class="algo-card">
+        <h3>FLOYD-WARSHALL</h3>
+        <span class="algo-label">WHEN TO USE</span>
+        <p class="algo-text">Compute shortest paths between all pairs of vertices. Works with negative edges but no negative cycles.</p>
+        <span class="algo-label">KEYWORDS</span>
+        <p class="algo-text">all-pairs shortest path, DP on graphs, adjacency matrix</p>
+        <div class="algo-examples">EXAMPLES: Shortest distances between cities</div>
+        <span class="algo-label">SAMPLE CODE</span>
+        <pre class="algo-code">
+for (int k=0;k&lt;n;k++)
+    for (int i=0;i&lt;n;i++)
+        for (int j=0;j&lt;n;j++)
+            dist[i][j] = min(dist[i][j], dist[i][k] + dist[k][j]);
+        </pre>
+      </div>
+
+      <div class="algo-card">
+        <h3>BELLMAN-FORD</h3>
+        <span class="algo-label">WHEN TO USE</span>
+        <p class="algo-text">Find shortest paths from a single source in graphs with negative edge weights. Detects negative cycles.</p>
+        <span class="algo-label">KEYWORDS</span>
+        <p class="algo-text">shortest path, negative weights, relax edges, negative cycle</p>
+        <div class="algo-examples">EXAMPLES: Currency Arbitrage, Shortest Path with Negative Edges</div>
+        <span class="algo-label">SAMPLE CODE</span>
+        <pre class="algo-code">
+vector&lt;int&gt; dist(n, INT_MAX); 
+dist[src]=0;
+for(int i=0;i&lt;n-1;i++)
+  for(auto &amp;e : edges)
+    dist[e.v] = min(dist[e.v], dist[e.u]+e.w);
+// check for negative cycle
+        </pre>
+      </div>
+
+      <div class="algo-card">
+        <h3>HEAVY-LIGHT DECOMPOSITION</h3>
+        <span class="algo-label">WHEN TO USE</span>
+        <p class="algo-text">Efficiently answer path or subtree queries on trees (e.g., sum, max) with log(n) complexity.</p>
+        <span class="algo-label">KEYWORDS</span>
+        <p class="algo-text">tree queries, path query, subtree query, segment tree</p>
+        <div class="algo-examples">EXAMPLES: Max/Min on Path, Sum of Subtree</div>
+        <span class="algo-label">SAMPLE CODE</span>
+        <pre class="algo-code">
+void dfs_sz(int u,int p){ ... }
+void dfs_hld(int u,int p,int h){ ... }
+// combined with segment tree
+        </pre>
       </div>
     </div>
 
@@ -770,7 +1214,6 @@
     </div>
   </div>
 
-  <!-- Quote (static fallback) kept for continuity but can be left or removed -->
   <div class="quote-section">
     <p class="quote-text">"The expert in anything was once a beginner."</p>
     <p class="quote-author">— HELEN HAYES</p>
@@ -827,7 +1270,7 @@
       data-duration="9000"
       data-quotes='[
         {"text":"The best way to predict the future is to create it.","author":"— PETER DRUCKER"},
-        {"text":"Don't watch the clock; do what it does. Keep going.","author":"— SAM LEVENSON"},
+        {"text":"Don\'t watch the clock; do what it does. Keep going.","author":"— SAM LEVENSON"},
         {"text":"Focus on being productive instead of busy.","author":"— TIM FERRISS"}
       ]'>
       <div class="quote-inner">
@@ -857,7 +1300,6 @@
     </div>
   </footer>
 
-  <!-- JavaScript: Quote rotator + Footer year -->
   <script>
     (function () {
       // Utility: parse data-quotes attribute safely
@@ -968,3 +1410,4 @@
   </script>
 </body>
 </html>
+
